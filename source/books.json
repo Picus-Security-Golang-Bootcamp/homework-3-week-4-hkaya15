@@ -1,67 +1,67 @@
 {
     "Books": [
         {
-            "BookID": "1",
+            "BookID": 1,
             "Name": "Harry Potter ve Felsefe Taşı",
-            "Page": "258",
-            "StockCount": "5",
-            "Price": "32.00",
-            "StockID": "555",
-            "ISBN": "12345678910",
+            "Page": 258,
+            "StockCount": 5,
+            "Price": 32.00,
+            "StockID": 555,
+            "ISBN": 12345678910,
             "Author": {
-                "ID": "745",
+                "ID": 745,
                 "Name": "J.K. Rowling"
             }
         },
         {
-            "BookID": "2",
+            "BookID": 2,
             "Name": "Yüzüklerin Efendisi Yüzük Kardeşliği",
-            "Page": "321",
-            "StockCount": "15",
-            "Price": "62.54",
-            "StockID": "112",
-            "ISBN": "2341567890",
+            "Page": 321,
+            "StockCount": 15,
+            "Price": 62.54,
+            "StockID": 112,
+            "ISBN": 2341567890,
             "Author": {
-                "ID": "654",
+                "ID": 654,
                 "Name": "J.R.R. Tolkien"
             }
         },
         {
-            "BookID": "3",
+            "BookID": 3,
             "Name": "The Return of the King: The Lord of the Rings",
-            "Page": "178",
-            "StockCount": "1",
-            "Price": "139.00",
-            "StockID": "555",
-            "ISBN": "1236574897",
+            "Page": 178,
+            "StockCount": 1,
+            "Price": 139.00,
+            "StockID": 555,
+            "ISBN": 1236574897,
             "Author": {
-                "ID": "654",
+                "ID": 654,
                 "Name": "J.R.R. Tolkien"
             }
         },
         {
-            "BookID": "4",
+            "BookID": 4,
             "Name": "Açlık",
-            "Page": "132",
-            "StockCount": "22",
-            "Price": "16.50",
-            "StockID": "432",
-            "ISBN": "456789654",
+            "Page": 132,
+            "StockCount": 22,
+            "Price": 16.50,
+            "StockID": 432,
+            "ISBN": 456789654,
             "Author": {
-                "ID": "222",
+                "ID": 222,
                 "Name": "Knut Hamsun"
             }
         },
         {
-            "BookID": "5",
+            "BookID": 5,
             "Name": "Satranç",
-            "Page": "111",
-            "StockCount": "12",
-            "Price": "6.30",
-            "StockID": "889",
-            "ISBN": "8796578904",
+            "Page": 111,
+            "StockCount": 12,
+            "Price": 6.30,
+            "StockID": 889,
+            "ISBN": 8796578904,
             "Author": {
-                "ID": "155",
+                "ID": 155,
                 "Name": "Stefan Zweig"
             }
         }
