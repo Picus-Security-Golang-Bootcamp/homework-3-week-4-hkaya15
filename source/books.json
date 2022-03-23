@@ -8,10 +8,7 @@
             "Price": 32.00,
             "StockID": 555,
             "ISBN": 12345678910,
-            "Author": {
-                "ID": 745,
-                "Name": "J.K. Rowling"
-            }
+            "AuthorID":745
         },
         {
             "BookID": 2,
@@ -21,10 +18,7 @@
             "Price": 62.54,
             "StockID": 112,
             "ISBN": 2341567890,
-            "Author": {
-                "ID": 654,
-                "Name": "J.R.R. Tolkien"
-            }
+            "AuthorID": 654
         },
         {
             "BookID": 3,
@@ -34,10 +28,7 @@
             "Price": 139.00,
             "StockID": 555,
             "ISBN": 1236574897,
-            "Author": {
-                "ID": 654,
-                "Name": "J.R.R. Tolkien"
-            }
+            "AuthorID": 654
         },
         {
             "BookID": 4,
@@ -47,10 +38,7 @@
             "Price": 16.50,
             "StockID": 432,
             "ISBN": 456789654,
-            "Author": {
-                "ID": 222,
-                "Name": "Knut Hamsun"
-            }
+            "AuthorID": 222
         },
         {
             "BookID": 5,
@@ -60,10 +48,7 @@
             "Price": 6.30,
             "StockID": 889,
             "ISBN": 8796578904,
-            "Author": {
-                "ID": 155,
-                "Name": "Stefan Zweig"
-            }
+            "AuthorID": 155
         }
     ]
 }

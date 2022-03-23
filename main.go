@@ -1,14 +1,13 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
 	"log"
-	"os"
 
 	"github.com/hkaya15/PicusSecurity/Week_4_Homework/base/db"
-	. "github.com/hkaya15/PicusSecurity/Week_4_Homework/book/model"
+
+	. "github.com/hkaya15/PicusSecurity/Week_4_Homework/author/repository"
+	. "github.com/hkaya15/PicusSecurity/Week_4_Homework/book/repository"
+
 	"github.com/joho/godotenv"
 )
 
@@ -22,28 +21,15 @@ func main() {
 	}
 
 	//fmt.Println(os.Getenv("PICUS_DB_NAME"))
-	d, err := db.CreatePostgreSQL()
+	db, err := db.CreatePostgreSQL()
 	if err != nil {
 		log.Fatal("DB cannot init")
 	}
-	log.Println("Postgres connected: ", d)
-}
-func GetAllBooks() (*Books, error) {
-
-	var books Books
-	jsonFile, err := os.Open("source/books.json")
-	if err != nil {
-		return nil, err
-	}
-
-	byteVal, _ := ioutil.ReadAll(jsonFile)
-
-	json.Unmarshal(byteVal, &books)
-
-	defer jsonFile.Close()
-	if err != nil {
-		fmt.Println("Error:", err)
-	}
-
-	return &books, nil
+	log.Println("Postgres connected: ", db)
+	bookRepo := NewBookRepository(db)
+	authorRepo := NewAuthorRepository(db)
+	bookRepo.Migrations()
+	authorRepo.Migrations()
+	bookRepo.InsertData()
+	authorRepo.InsertData()
 }
