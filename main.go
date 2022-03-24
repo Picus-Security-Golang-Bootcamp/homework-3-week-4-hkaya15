@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/hkaya15/PicusSecurity/Week_4_Homework/base/db"
+	. "github.com/hkaya15/PicusSecurity/Week_4_Homework/base/db"
 
 	. "github.com/hkaya15/PicusSecurity/Week_4_Homework/author/repository"
 	. "github.com/hkaya15/PicusSecurity/Week_4_Homework/book/repository"
@@ -21,7 +21,10 @@ func main() {
 	}
 
 	//fmt.Println(os.Getenv("PICUS_DB_NAME"))
-	db, err := db.CreatePostgreSQL()
+	base:=DBBase{DbType: &POSTGRES{}}
+	db, err := base.DbType.Create()
+	
+	//CreatePostgreSQL()
 	if err != nil {
 		log.Fatal("DB cannot init")
 	}
