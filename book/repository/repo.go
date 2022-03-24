@@ -17,18 +17,26 @@ func NewBookRepository(db *gorm.DB) *BookRepository {
 	return &BookRepository{db: db}
 }
 
-func (c *BookRepository) Migrations() {
-	c.db.AutoMigrate(&Book{})
+func (b *BookRepository) FindAll() []Book {
+	var books []Book
+	b.db.Find(&books)
+
+	return books
 }
 
-func (c *BookRepository) InsertData() error {
+
+func (b *BookRepository) Migrations() {
+	b.db.AutoMigrate(&Book{})
+}
+
+func (b *BookRepository) InsertData() error {
 	bookList, err := getAllBooksFromJSON()
 	if err != nil {
 		return err
 	}
 
 	for _, v := range bookList.Books {
-		c.db.Where(Book{BookID: v.BookID}).Attrs(Book{BookID: v.BookID, Name: v.Name, Page: v.Page, StockCount: v.StockCount, Price: v.Price, StockID: v.StockID, ISBN: v.ISBN, AuthorID: v.AuthorID}).FirstOrCreate(&v)
+		b.db.Where(Book{BookID: v.BookID}).Attrs(Book{BookID: v.BookID, Name: v.Name, Page: v.Page, StockCount: v.StockCount, Price: v.Price, StockID: v.StockID, ISBN: v.ISBN, AuthorID: v.AuthorID}).FirstOrCreate(&v)
 	}
 	return nil
 }
