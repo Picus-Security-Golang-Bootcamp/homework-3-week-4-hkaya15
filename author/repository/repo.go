@@ -3,6 +3,7 @@ package authorrepo
 import (
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"os"
 
 	. "github.com/hkaya15/PicusSecurity/Week_4_Homework/author/model"
@@ -24,6 +25,7 @@ func (c *AuthorRepository) Migrations() {
 func (c *AuthorRepository) InsertData() error {
 	authorsList, err := getAllAuthorsFromJSON()
 	if err != nil {
+		log.Fatalln(err)
 		return err
 	}
 
@@ -38,6 +40,7 @@ func getAllAuthorsFromJSON() (*Authors, error) {
 	var authors Authors
 	jsonFile, err := os.Open(os.Getenv("AUTHOR_JSON"))
 	if err != nil {
+		log.Fatal(err)
 		return nil, err
 	}
 

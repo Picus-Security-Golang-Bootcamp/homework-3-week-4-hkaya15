@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	. "github.com/hkaya15/PicusSecurity/Week_4_Homework/base/db"
@@ -12,44 +11,24 @@ import (
 )
 
 func main() {
-	//x, e := GetAllBooks()
-	//fmt.Println(x, e)
-
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Fatalln("Error loading .env file")
 	}
-
-	//fmt.Println(os.Getenv("PICUS_DB_NAME"))
 	base := DBBase{DbType: &POSTGRES{}}
 	db, err := base.DbType.Create()
 
-	//CreatePostgreSQL()
 	if err != nil {
-		log.Fatal("DB cannot init")
+		log.Fatalln("DB cannot init")
 	}
-	log.Println("Postgres connected: ", db)
+	log.Println("DB connected: ", db)
+
 	bookRepo := NewBookRepository(db)
 	authorRepo := NewAuthorRepository(db)
 	bookRepo.Migrations()
 	authorRepo.Migrations()
 	bookRepo.InsertData()
 	authorRepo.InsertData()
-	//x:=bookRepo.FindAll()
-	//fmt.Println(x)
-	//
 
-	// x:=bookRepo.SearchByName("pOT")
-	// fmt.Println(x)
 
-	// result, _ := db.Debug().Migrator().ColumnTypes(&Book{})
-	// for _, v := range result {
-	// 	fmt.Println(v.Name())
-	// }
-
-	// v:=bookRepo.DeleteByID(4)
-	// fmt.Println(v)
-
-	x := bookRepo.BuyByID(3, 1)
-	fmt.Println(x)
 }

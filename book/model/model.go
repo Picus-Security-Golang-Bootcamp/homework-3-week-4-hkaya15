@@ -32,6 +32,11 @@ func (b *Book) ToString() string {
 }
 
 func (b *Book) BeforeDelete(tx *gorm.DB) (err error) {
-	fmt.Printf("Book (%s) deleting...", b.Name)
+	fmt.Printf("Book (%s) deleting...\n", b.Name)
+	return nil
+}
+
+func (b *Book) AfterDelete(tx *gorm.DB) (err error) {
+	fmt.Printf("Book (%s) deleted!\n", b.Name)
 	return nil
 }
