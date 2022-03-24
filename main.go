@@ -7,7 +7,6 @@ import (
 
 	. "github.com/hkaya15/PicusSecurity/Week_4_Homework/author/repository"
 	. "github.com/hkaya15/PicusSecurity/Week_4_Homework/book/repository"
-
 	"github.com/joho/godotenv"
 )
 
@@ -21,9 +20,9 @@ func main() {
 	}
 
 	//fmt.Println(os.Getenv("PICUS_DB_NAME"))
-	base:=DBBase{DbType: &POSTGRES{}}
+	base := DBBase{DbType: &POSTGRES{}}
 	db, err := base.DbType.Create()
-	
+
 	//CreatePostgreSQL()
 	if err != nil {
 		log.Fatal("DB cannot init")
@@ -35,4 +34,14 @@ func main() {
 	authorRepo.Migrations()
 	bookRepo.InsertData()
 	authorRepo.InsertData()
+
+	//
+
+	bookRepo.SearchByName("pOT")
+	//fmt.Println(x)
+
+	// result, _ := db.Debug().Migrator().ColumnTypes(&Book{})
+	// for _, v := range result {
+	// 	fmt.Println(v.Name())
+	// }
 }

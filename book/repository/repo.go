@@ -2,6 +2,7 @@ package bookrepo
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"os"
 
@@ -24,6 +25,14 @@ func (b *BookRepository) FindAll() []Book {
 	return books
 }
 
+func (b *BookRepository) SearchByName(name string) []Book {
+	var books []Book
+	//name = "%" + name + "%"
+	b.db.Where("name ILIKE ? ", "%"+name+"%").Find(&books)
+	fmt.Println(books)
+
+	return books
+}
 
 func (b *BookRepository) Migrations() {
 	b.db.AutoMigrate(&Book{})

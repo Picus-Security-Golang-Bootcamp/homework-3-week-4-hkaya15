@@ -9,10 +9,10 @@ type Authors struct {
 // Create Author type
 type Author struct {
 	gorm.Model
-	ID   int    `json:"ID" gorm:"column: ID"`
-	Name string `json:"Name" gorm:"column: Name"`
+	ID   int    `json:"ID"`
+	Name string `json:"Name"`
 }
 
 func (Author) TableName() string {
-	return "Authors"
+	return "Author"
 }
