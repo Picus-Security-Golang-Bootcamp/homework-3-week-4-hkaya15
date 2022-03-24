@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"time"
 
 	. "github.com/hkaya15/PicusSecurity/Week_4_Homework/book/model"
 	"gorm.io/gorm"
@@ -16,6 +17,20 @@ type BookRepository struct {
 
 func NewBookRepository(db *gorm.DB) *BookRepository {
 	return &BookRepository{db: db}
+}
+
+func (b *BookRepository) BuyByID(id int, count uint) Book {
+	var book Book
+	b.db.Where(Book{BookID: id}).Find(&book)
+	book.StockCount = book.StockCount - count
+	b.db.Save(book)
+	return book
+}
+
+func (b *BookRepository) DeleteByID(id int) Book {
+	var book Book
+	b.db.Where(Book{BookID: id}).Find(&book).Model(&book).Update("deleted_at", time.Now())
+	return book
 }
 
 func (b *BookRepository) FindAll() []Book {

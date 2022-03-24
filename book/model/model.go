@@ -16,7 +16,7 @@ type Book struct {
 	BookID     int     `json:"BookID" gorm:"not_null"`
 	Name       string  `json:"Name"`
 	Page       int     `json:"Page"`
-	StockCount int     `json:"StockCount"`
+	StockCount uint     `json:"StockCount"`
 	Price      float64 `json:"Price" gorm:"type:numeric(10,2)"`
 	StockID    int     `json:"StockID"`
 	ISBN       int     `json:"ISBN"`

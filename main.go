@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	. "github.com/hkaya15/PicusSecurity/Week_4_Homework/base/db"
@@ -34,14 +35,21 @@ func main() {
 	authorRepo.Migrations()
 	bookRepo.InsertData()
 	authorRepo.InsertData()
-
+	//x:=bookRepo.FindAll()
+	//fmt.Println(x)
 	//
 
-	bookRepo.SearchByName("pOT")
-	//fmt.Println(x)
+	// x:=bookRepo.SearchByName("pOT")
+	// fmt.Println(x)
 
 	// result, _ := db.Debug().Migrator().ColumnTypes(&Book{})
 	// for _, v := range result {
 	// 	fmt.Println(v.Name())
 	// }
+
+	// v:=bookRepo.DeleteByID(4)
+	// fmt.Println(v)
+
+	x := bookRepo.BuyByID(3, 1)
+	fmt.Println(x)
 }
