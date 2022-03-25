@@ -13,6 +13,3 @@ type Author struct {
 	Name string `json:"Name"`
 }
 
-// func (Author) TableName() string {
-// 	return "Author"
-// }
