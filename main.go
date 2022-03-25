@@ -30,5 +30,7 @@ func main() {
 	bookRepo.InsertData()
 	authorRepo.InsertData()
 
-	bookRepo.GetBooksWithAuthor()
+	//	bookRepo.GetBooksWithAuthor()
+
+	authorRepo.GetAuthorsWithBook()
 }

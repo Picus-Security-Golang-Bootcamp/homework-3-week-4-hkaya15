@@ -92,7 +92,7 @@ func (b *BookRepository) InsertData() error {
 	}
 
 	for _, v := range bookList.Books {
-		b.db.Where(Book{BookID: v.BookID}).Attrs(Book{BookID: v.BookID, Name: v.Name, Page: v.Page, StockCount: v.StockCount, Price: v.Price, StockID: v.StockID, ISBN: v.ISBN, AuthorID: v.AuthorID}).FirstOrCreate(&v)
+		b.db.Where(Book{BookID: v.BookID}).Attrs(Book{BookID: v.BookID, BookName: v.BookName, Page: v.Page, StockCount: v.StockCount, Price: v.Price, StockID: v.StockID, ISBN: v.ISBN, AuthorID: v.AuthorID}).FirstOrCreate(&v)
 	}
 	return nil
 }

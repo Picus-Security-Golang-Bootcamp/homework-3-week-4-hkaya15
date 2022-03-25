@@ -2,6 +2,7 @@ package authorrepo
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -16,6 +17,38 @@ type AuthorRepository struct {
 
 func NewAuthorRepository(db *gorm.DB) *AuthorRepository {
 	return &AuthorRepository{db: db}
+}
+
+type AuthorsWithBook struct {
+	gorm.Model
+	ID int    `gorm:"foreignKey:ID"`
+	Name   string `gorm:"foreignKey:name"`
+	Page string `gorm:"foreignKey:page"`
+	BookName string `gorm:"foreignKey:bookname"`
+}
+
+func (a *AuthorRepository) GetAuthorsWithBook() ([]AuthorsWithBook, error) {
+	var author []AuthorsWithBook
+
+	x := a.db.Table("authors").Select("authors.id,authors.name,books.page,books.book_name").Joins("Inner join books on books.author_id = authors.id")
+	x.Find(&author)
+	for i := 0; i < len(author); i++ {
+		fmt.Println(author[i])
+	}
+	return author, nil
+}
+func (a *AuthorRepository) SearchByName(name string) []Author {
+	var authors []Author
+	fmt.Println(name)
+	a.db.Where("Name ILIKE ? ", "%"+name+"%").Find(&authors)
+	return authors
+}
+
+func (a *AuthorRepository) FindAll() []Author {
+	var authors []Author
+	a.db.Find(&authors)
+
+	return authors
 }
 
 func (c *AuthorRepository) Migrations() {
