@@ -26,7 +26,7 @@ func CreatePostgreSQL() (*gorm.DB, error) {
 		os.Getenv("PICUS_DB_NAME"),
 		os.Getenv("PICUS_DB_PASSWORD"),
 	)
-	db, err := gorm.Open(postgres.Open(dataSourceName), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(dataSourceName), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: true})
 	if err != nil {
 		return nil, fmt.Errorf("cannot open database: %v", err)
 	}

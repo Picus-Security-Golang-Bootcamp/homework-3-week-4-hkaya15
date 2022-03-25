@@ -30,6 +30,7 @@ func (c *AuthorRepository) InsertData() error {
 	}
 
 	for _, v := range authorsList.Authors {
+		//fmt.Println(&v.Authorid)
 		c.db.Where(Author{ID: v.ID}).Attrs(Author{ID: v.ID, Name: v.Name}).FirstOrCreate(&v)
 	}
 	return nil

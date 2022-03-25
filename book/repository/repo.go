@@ -2,6 +2,7 @@ package bookrepo
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -17,6 +18,18 @@ type BookRepository struct {
 
 func NewBookRepository(db *gorm.DB) *BookRepository {
 	return &BookRepository{db: db}
+}
+
+func (b *BookRepository) GetBooksWithAuthor() ([]Book, error) {
+	var result []Book
+
+	if err := b.db.Preload("Authors").Find(&result).Error; err != nil {
+		fmt.Println(err)
+	}
+	for _, v := range result {
+		fmt.Println(v.ToString())
+	}
+	return result, nil
 }
 
 // BuyByID returns the book that buy by book ıd & book count if it causes negative value (uint)
