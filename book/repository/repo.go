@@ -77,7 +77,7 @@ func (b *BookRepository) FindAll() []Book {
 // SearchName returns the book list by book name regarding of the contains & non-case sensitive
 func (b *BookRepository) SearchByName(name string) []Book {
 	var books []Book
-	b.db.Where("name ILIKE ? ", "%"+name+"%").Find(&books)
+	b.db.Where("book_name ILIKE ? ", "%"+name+"%").Find(&books)
 	return books
 }
 // Migrations helps the auto-migrate
