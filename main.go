@@ -32,5 +32,5 @@ func main() {
 
 	//	bookRepo.GetBooksWithAuthor()
 
-	//authorRepo.GetAuthorsWithBook()
+	//authorRepo.GetAuthorsWithBooks()
 }
