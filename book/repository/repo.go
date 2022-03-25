@@ -20,6 +20,7 @@ func NewBookRepository(db *gorm.DB) *BookRepository {
 	return &BookRepository{db: db}
 }
 
+// GetBooksWithAuthor returns the booklist with authors
 func (b *BookRepository) GetBooksWithAuthor() ([]Book, error) {
 	var result []Book
 
@@ -79,11 +80,11 @@ func (b *BookRepository) SearchByName(name string) []Book {
 	b.db.Where("name ILIKE ? ", "%"+name+"%").Find(&books)
 	return books
 }
-
+// Migrations helps the auto-migrate
 func (b *BookRepository) Migrations() {
 	b.db.AutoMigrate(&Book{})
 }
-
+// InsertData helps the insert data
 func (b *BookRepository) InsertData() error {
 	bookList, err := getAllBooksFromJSON()
 	if err != nil {
