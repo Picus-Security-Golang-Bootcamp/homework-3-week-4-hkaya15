@@ -30,7 +30,7 @@ func (a *AuthorRepository) GetAuthorsWithBooks() ([]AuthorsWithBook, error) {
 	return author, nil
 }
 
-
+// SearchByName returns Authors list by name
 func (a *AuthorRepository) SearchByName(name string) []Author {
 	var authors []Author
 	fmt.Println(name)
@@ -38,6 +38,7 @@ func (a *AuthorRepository) SearchByName(name string) []Author {
 	return authors
 }
 
+// FindAll returns all author list
 func (a *AuthorRepository) FindAll() []Author {
 	var authors []Author
 	a.db.Find(&authors)
@@ -45,10 +46,12 @@ func (a *AuthorRepository) FindAll() []Author {
 	return authors
 }
 
+// Migrations helps the auto-migrate
 func (c *AuthorRepository) Migrations() {
 	c.db.AutoMigrate(&Author{})
 }
 
+// InsertData helps the insert data
 func (c *AuthorRepository) InsertData() error {
 	authorsList, err := getAllAuthorsFromJSON()
 	if err != nil {
@@ -57,12 +60,12 @@ func (c *AuthorRepository) InsertData() error {
 	}
 
 	for _, v := range authorsList.Authors {
-		//fmt.Println(&v.Authorid)
 		c.db.Where(Author{ID: v.ID}).Attrs(Author{ID: v.ID, Name: v.Name}).FirstOrCreate(&v)
 	}
 	return nil
 }
 
+// getAllAuthorsFromJSON convert JSON to Author slice
 func getAllAuthorsFromJSON() (*Authors, error) {
 
 	var authors Authors
