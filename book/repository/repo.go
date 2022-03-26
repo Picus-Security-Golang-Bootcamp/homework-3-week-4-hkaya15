@@ -58,8 +58,7 @@ func (b *BookRepository) DeleteByID(id int) (Book, error) {
 // FindAll returns the book list
 func (b *BookRepository) FindAll() []Book {
 	var books []Book
-	b.db.Find(&books)
-
+	b.db.Where("deleted_at IS NULL").Find(&books)
 	return books
 }
 
