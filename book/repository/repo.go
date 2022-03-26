@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"time"
 
 	. "github.com/hkaya15/PicusSecurity/Week_4_Homework/book/model"
 	"gorm.io/gorm"
@@ -49,19 +48,9 @@ func (b *BookRepository) BuyByID(id int, count uint) (Book, error) {
 // DeleteByID returns the book that deleted by book id. It just update Deleted_At on DB (soft delete)
 func (b *BookRepository) DeleteByID(id int) (Book, error) {
 	var book Book
-	result := b.db.Where(Book{BookID: id}).Find(&book).Model(&book).Update(os.Getenv("DELETED_AT"), time.Now())
+	result := b.db.Where("book_id = ?", id).Find(&book).Delete(&book)
 	if result.Error != nil {
 		log.Fatalln(result.Error.Error())
-	}
-	err := book.BeforeDelete(b.db)
-	if err != nil {
-		log.Fatalln(err)
-		return book, err
-	}
-	errAfter := book.AfterDelete(b.db)
-	if errAfter != nil {
-		log.Fatalln(err)
-		return book, err
 	}
 	return book, nil
 }
@@ -80,10 +69,12 @@ func (b *BookRepository) SearchByName(name string) []Book {
 	b.db.Where("book_name ILIKE ? ", "%"+name+"%").Find(&books)
 	return books
 }
+
 // Migrations helps the auto-migrate
 func (b *BookRepository) Migrations() {
 	b.db.AutoMigrate(&Book{})
 }
+
 // InsertData helps the insert data
 func (b *BookRepository) InsertData() error {
 	bookList, err := getAllBooksFromJSON()
