@@ -1,10 +1,57 @@
-# Homework 3 Week 4
+# Week 4 | Homework
 
-- `Book` ve `Author` bilgileri bir dosyadan okunacak ve DB'ye kayıt edilecek.
-- `list`, `search`, `delete(soft-delete)`, `buy` gibi `os.Args` komutları yerine DB sorguları yazılacak. 
-- Bu 2 modelle alakalı GORM sorguları yazılacak.
-  - GetByID
-  - FindByName
-  - GetBooksWithAuthor
-  - GetAuthorWithBooks etc. (GORM dökümantasyondaki sorgu çeşitlerine bakılacak bu 2 modelde uygulanacak)
-  - (Sadece 4 sorgu değil olabildiğince sorgu yazıp kendinizi geliştirin. Bu size artı olarak dönüş olacaktır.)
+This work is the fourth week of the [Picus Security](https://www.picussecurity.com) Golang Backend Web Development Bootcamp
+* It has prepared with GORM queries
+
+## Installation
+```bash
+git clone https://github.com/Picus-Security-Golang-Bootcamp/homework-3-week-4-hkaya15.git
+```
+
+## Usage
+
+### SearchByName / Authors - Books
+```go
+// SearchByName returns Authors list by name
+// SearchName returns the book list by book name regarding of the contains & non-case sensitive
+
+```
+
+### FindAll / Authors - Books 
+```go
+// FindAll returns all author list
+// FindAll returns the book list
+
+```
+
+### GetAuthorsWithBooks / Authors
+```go
+// GetAuthorsWithBooks return DTO combined with book names
+
+```
+
+### GetBooksWithAuthor / Books
+```go
+// GetBooksWithAuthor returns the booklist with authors
+
+```
+
+### DeleteByID / Books
+```go
+// DeleteByID returns the book that deleted by book id. It just update Deleted_At on DB (soft delete)
+
+```
+
+### BuyByID / Books
+```go
+// BuyByID returns the book that buy by book ıd & book count if it causes negative value (uint)
+
+```
+
+### GetBooksWithAuthor / Books
+```go
+// GetBooksWithAuthor returns the booklist with authors
+
+```
+## License
+[MIT](https://mit-license.org)
